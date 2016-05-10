@@ -28,8 +28,8 @@ echo 'Installing Node.js'
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 source ~/.nvm/nvm.sh
-nvm alias default 4.2
-nvm install 4.2
+nvm alias default 4.4
+nvm install 4.4
 nvm use default
 echo 'nvm use default' >> ~/.profile
 
@@ -44,9 +44,8 @@ n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,
 echo 'Installing ewd-qoper8 and associated modules'
 
 cd ~
-mkdir ewd
-cd ewd
-npm install express body-parser ewd-qoper8 ewd-qoper8-express ewd-session ewd-qoper8-cache ewd-qoper8-gtm socket.io
+mkdir ewd3
+cd ewd3
 npm install ewd-xpress ewd-xpress-monitor
 
 # NodeM
@@ -70,17 +69,17 @@ echo 'echo "$gtmroutines" | fgrep "$nodemgtmr" || export gtmroutines="$nodemgtmr
 
 echo 'Moving ewd-express files into place'
 
-mv ~/ewd/node_modules/ewd-xpress/example/ewd-xpress.js ~/ewd/ewd-xpress.js
+mv ~/ewd3/node_modules/ewd-xpress/example/ewd-xpress.js ~/ewd3/ewd-xpress.js
 
-cd ~/ewd
+cd ~/ewd3
 mkdir www
 cd www
 mkdir ewd-xpress-monitor
-cp ~/ewd/node_modules/ewd-xpress-monitor/www/bundle.js ~/ewd/www/ewd-xpress-monitor
-cp ~/ewd/node_modules/ewd-xpress-monitor/www/*.html ~/ewd/www/ewd-xpress-monitor
-cp ~/ewd/node_modules/ewd-xpress-monitor/www/*.css ~/ewd/www/ewd-xpress-monitor
+cp ~/ewd3/node_modules/ewd-xpress-monitor/www/bundle.js ~/ewd3/www/ewd-xpress-monitor
+cp ~/ewd3/node_modules/ewd-xpress-monitor/www/*.html ~/ewd3/www/ewd-xpress-monitor
+cp ~/ewd3/node_modules/ewd-xpress-monitor/www/*.css ~/ewd3/www/ewd-xpress-monitor
 
-cd ~/ewd
+cd ~/ewd3
 
 echo 'Done!'
 
