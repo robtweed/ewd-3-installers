@@ -3,6 +3,7 @@
 # run using: source install_gtm_2.sh
 
 # Acknowledgement: Wladimir Mutel for NodeM configuration logic
+#                  KS Bhaskar for GT.M installation logic
 
 # run as normal user, eg ubuntu
 
@@ -16,6 +17,14 @@ sudo apt-get install -y build-essential
 sudo apt-get install -y wget gzip openssh-server curl
 
 # GT.M
+
+echo 'Installing GT.M'
+
+mkdir /tmp/tmp # Create a temporary directory for the installer
+cd /tmp/tmp    # and change to it. Next command is to download the GT.M installer
+wget https://sourceforge.net/projects/fis-gtm/files/GT.M%20Installer/v0.13/gtminstall
+chmod +x gtminstall # Make the file executable
+sudo -E ./gtminstall --utf8 default --verbose # download and install GT.M including UTF-8 mode
 
 echo 'Configuring GT.M'
 
@@ -55,12 +64,12 @@ echo 'Installing NodeM'
 npm install nodem
 sudo ln -sf $gtm_dist/libgtmshr.so /usr/local/lib/
 sudo ldconfig
-base=~/ewd
+base=~/ewd3
 [ -f "$GTMCI" ] || export GTMCI="$(find $base -iname nodem.ci)"
 nodemgtmr="$(find $base -iname v4wnode.m | tail -n1 | xargs dirname)"
 echo "$gtmroutines" | fgrep "$nodemgtmr" || export gtmroutines="$nodemgtmr $gtmroutines"
 
-echo 'base=~/ewd'
+echo 'base=~/ewd3'
 echo '[ -f "$GTMCI" ] || export GTMCI="$(find $base -iname nodem.ci)"' >> ~/.profile
 echo 'nodemgtmr="$(find $base -iname v4wnode.m | tail -n1 | xargs dirname)"' >> ~/.profile
 echo 'echo "$gtmroutines" | fgrep "$nodemgtmr" || export gtmroutines="$nodemgtmr $gtmroutines"' >> ~/.profile
@@ -69,7 +78,7 @@ echo 'echo "$gtmroutines" | fgrep "$nodemgtmr" || export gtmroutines="$nodemgtmr
 
 echo 'Moving ewd-express files into place'
 
-mv ~/ewd3/node_modules/ewd-xpress/example/ewd-xpress.js ~/ewd3/ewd-xpress.js
+mv ~/ewd3/node_modules/ewd-xpress/example/ewd-xpress-gtm.js ~/ewd3/ewd-xpress.js
 
 cd ~/ewd3
 mkdir www
