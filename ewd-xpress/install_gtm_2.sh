@@ -2,6 +2,8 @@
 
 # run using: source install_gtm_2.sh
 
+# Acknowledgement: Wladimir Mutel for NodeM configuration logic
+
 # run as normal user, eg ubuntu
 
 
