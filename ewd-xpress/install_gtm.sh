@@ -69,7 +69,7 @@ base=~/ewd3
 nodemgtmr="$(find $base -iname v4wnode.m | tail -n1 | xargs dirname)"
 echo "$gtmroutines" | fgrep "$nodemgtmr" || export gtmroutines="$nodemgtmr $gtmroutines"
 
-echo 'base=~/ewd3'
+echo 'base=~/ewd3' >> ~/.profile
 echo '[ -f "$GTMCI" ] || export GTMCI="$(find $base -iname nodem.ci)"' >> ~/.profile
 echo 'nodemgtmr="$(find $base -iname v4wnode.m | tail -n1 | xargs dirname)"' >> ~/.profile
 echo 'echo "$gtmroutines" | fgrep "$nodemgtmr" || export gtmroutines="$nodemgtmr $gtmroutines"' >> ~/.profile
