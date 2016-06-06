@@ -4,7 +4,7 @@
 
 cd ~/ewd3
 
-npm install react@0.14 react-dom@0.14 babelify babel-preset-react react-bootstrap react-toastr react-select socket.io-client@1.3.7
+npm install react react-dom babelify babel-preset-react react-bootstrap react-toastr react-select socket.io-client
 npm install jquery ewd-client ewd-react-tools ewd-xpress-react
 
 npm install -g browserify
@@ -20,4 +20,3 @@ npm install babel-preset-es2015
 #  cd ~/ewd3/node_modules/ewd-xpress-monitor/www
 #  browserify -t [ babelify --compact false --presets [es2015 react] ] app.js | uglifyjs > bundle.js
 #  cp ~/ewd3/node_modules/ewd-xpress-monitor/www/bundle.js ~/ewd3/www/ewd-xpress-monitor
-
