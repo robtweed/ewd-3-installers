@@ -57,7 +57,7 @@ npm install ewd-client
 # Load the latest cache.node interface module and move it into the correct place
 
 cd ~/ewd3/node_modules
-wget https://s3-eu-west-1.amazonaws.com/cache.node/build-124/linux/cache421.node
+wget https://s3-eu-west-1.amazonaws.com/cache.node/build-113/linux/cache421.node
 mv cache421.node cache.node
 
 # Finally move various files into place:
