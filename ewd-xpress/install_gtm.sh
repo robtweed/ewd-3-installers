@@ -24,12 +24,27 @@ mkdir /tmp/tmp # Create a temporary directory for the installer
 cd /tmp/tmp    # and change to it. Next command is to download the GT.M installer
 wget https://sourceforge.net/projects/fis-gtm/files/GT.M%20Installer/v0.13/gtminstall
 chmod +x gtminstall # Make the file executable
-sudo -E ./gtminstall --utf8 default --verbose # download and install GT.M including UTF-8 mode
+gtmroot=/usr/lib/fis-gtm
+gtmcurrent=$gtmroot/current
+if [ -e "$gtmcurrent"] ; then
+  mv -v $gtmcurrent $gtmroot/previous_`date -u +%Y-%m-%d:%H:%M:%S`
+fi
+mkdir -p $gtmcurrent # make sure directory exists for links to current GT.M
+sudo -E ./gtminstall --utf8 default --verbose --linkenv $gtmcurrent --linkexec $gtmcurrent # download and install GT.M including UTF-8 mode
 
 echo 'Configuring GT.M'
 
-source "/usr/lib/fis-gtm/V6.3-000_x86_64"/gtmprofile
-echo 'source "/usr/lib/fis-gtm/V6.3-000_x86_64"/gtmprofile' >> ~/.profile
+gtmprof=$gtmcurrent/gtmprofile
+gtmprofcmd="source $gtmprof"
+$gtmprofcmd
+tmpfile=`mktemp`
+if [ `grep -v "$gtmprofcmd" ~/.profile | grep $gtmroot >$tmpfile`] ; then
+  echo "Warning: existing commands referencing $gtmroot in ~/.profile may interfere with setting up environment"
+  cat $tmpfile
+fi
+if [ `grep -v "$gtmprofcmd" ~/.profile` ] ; then echo "$gtmprofcmd" >> ~/.profile ; fi
+rm $tmpfile
+unset tmpfile gtmprofcmd gtmprof gtmcurrent gtmroot
 
 # Node.js
 
