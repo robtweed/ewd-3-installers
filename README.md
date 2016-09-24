@@ -16,6 +16,32 @@ Twitter: @rtweed
 
 Google Group for discussions, support, advice etc: [http://groups.google.co.uk/group/enterprise-web-developer-community](http://groups.google.co.uk/group/enterprise-web-developer-community)
 
+## Using the Installers
+
+### Installing ewd-xpress with the GT.M Database
+
+On a Ubuntu system:
+
+     cd ~
+     sudo apt-get -y install git
+     git clone https://github.com/robtweed/ewd-3-installers
+     source ewd-3-installers/ewd-xpress/install_gtm.sh
+
+### Installing ewd-xpress with the GlobalsDB Database
+
+On a Ubuntu system:
+
+     cd ~
+     sudo apt-get -y install git
+     git clone https://github.com/robtweed/ewd-3-installers
+     source ewd-3-installers/ewd-xpress/install_globalsdb.sh
+
+### Installing ewd-xpress with the Cache Database
+
+The install script at https://github.com/robtweed/ewd-3-installers/ewd-xpress/install_globalsdb.sh
+ is not intended to be run as a script, but more as a template set of instructions that you should
+ use as a baseline and adapt, as appropriate, for your particular system.
+
 
 ## License
 
