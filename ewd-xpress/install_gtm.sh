@@ -51,7 +51,16 @@ if [ `grep -v "$gtmprofcmd" ~/.profile | grep $gtmroot >$tmpfile`] ; then
   echo "Warning: existing commands referencing $gtmroot in ~/.profile may interfere with setting up environment"
   cat $tmpfile
 fi
-if [ `grep -v "$gtmprofcmd" ~/.profile` ] ; then echo "$gtmprofcmd" >> ~/.profile ; fi
+
+# ****** Temporary fix to ensure that invocation of gtmprofile is added correctly to .profile
+
+# if [ `grep -v "$gtmprofcmd" ~/.profile` ] ; then echo "$gtmprofcmd" >> ~/.profile ; fi
+
+echo 'copying ' $gtmprofcmd ' to profile...'
+echo $gtmprofcmd >> ~/.profile
+
+# ****** end of temporary fix
+
 rm $tmpfile
 unset tmpfile gtmprofcmd gtmprof gtmcurrent gtmroot
 
