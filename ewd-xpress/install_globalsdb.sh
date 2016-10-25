@@ -5,6 +5,7 @@
 # Update first just to be sure
 
 sudo apt-get update
+sudo apt-get install -y build-essential libssl-dev
 sudo apt-get install -y wget gzip openssh-server curl
 
 # Install GlobalsDB
@@ -36,15 +37,10 @@ rm -rf kit_unix_globals
 
 # Install NVM
 
-curl https://raw.githubusercontent.com/creationix/nvm/v0.10.0/install.sh | sh
-source ~/.nvm/nvm.sh
-
-# Now install latest Node.js 4.x
-
-nvm alias default 4
-nvm install 4
-nvm use default
-echo 'nvm use default' >> ~/.profile
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+nvm install 6
 
 # Now ready to install ewd-xpress
 
@@ -57,8 +53,8 @@ npm install ewd-client
 # Load the latest cache.node interface module and move it into the correct place
 
 cd ~/ewd3/node_modules
-wget https://s3-eu-west-1.amazonaws.com/cache.node/build-113/linux/cache421.node
-mv cache421.node cache.node
+wget https://s3-eu-west-1.amazonaws.com/cache.node/build-124/linux/cache610.node
+mv cache610.node cache.node
 
 # Finally move various files into place:
 

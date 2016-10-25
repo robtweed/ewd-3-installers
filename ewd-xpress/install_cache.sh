@@ -10,7 +10,7 @@
 # Prepare
 
 sudo apt-get update
-sudo apt-get install -y build-essential
+sudo apt-get install -y build-essential libssl-dev
 sudo apt-get install -y wget gzip openssh-server curl
 
 # Cache
@@ -52,17 +52,14 @@ cd /opt/cache/mgr
 
 ccontrol stop cache restart quietly
 
-# Node.js
+# Node.js v6.x
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
-source ~/.nvm/nvm.sh
+# Install NVM
 
-#  I'm going to install the latest LTS version of Node.js: 4.4, but any earlier version will do
-
-nvm alias default 4.4
-nvm install 4.4
-nvm use default
-echo 'nvm use default' >> ~/.profile
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+nvm install 6
 
 sudo ln -s /usr/local/bin/node /usr/bin/node
 sudo ln -s /usr/local/lib/node /usr/lib/node
@@ -85,10 +82,10 @@ npm install ewd-xpress ewd-xpress-monitor
 
 cd ~/ewd3/node_modules
 
-# You'll need a compatible copy of the cache.node interface file, ie cache421.node:
+# You'll need a compatible copy of the cache.node interface file, ie cache610.node:
 #  rename it to cache.node:
 
-mv cache421.node cache.node
+mv cache610.node cache.node
 
 # Finally move various files into place:
 
