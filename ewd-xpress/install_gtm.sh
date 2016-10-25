@@ -13,8 +13,8 @@
 echo 'Preparing environment'
 
 sudo apt-get update
-sudo apt-get install -y build-essential
-sudo apt-get install -y wget gzip openssh-server curl
+sudo apt-get install -y build-essential libssl-dev
+sudo apt-get install -y wget gzip openssh-server curl python-minimal
 
 # GT.M
 
@@ -75,12 +75,12 @@ echo 'Installing Node.js'
 
 cd ~
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm alias default 4
-nvm install 4
-nvm use default
-echo 'nvm use default' >> ~/.profile
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+nvm install 6
+
+#make Node.js available to sudo
 
 sudo ln -s /usr/local/bin/node /usr/bin/node
 sudo ln -s /usr/local/lib/node /usr/lib/node
