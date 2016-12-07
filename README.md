@@ -43,6 +43,34 @@ The install script at https://github.com/robtweed/ewd-3-installers/ewd-xpress/in
  use as a baseline and adapt, as appropriate, for your particular system.
 
 
+### Installing ewd-xpress, Redis and ewd-redis-globals on a Raspberry Pi
+
+The installer assumes you've done a fresh installation of NOOBS/Raspbian.  Then:
+
+     cd ~
+     wget https://raw.githubusercontent.com/robtweed/ewd-3-installers/master/ewd-xpress/install_rpi.sh
+     source install_rpi.sh
+
+Be patient - it all takes quite a while to install, but it should get there in the end.  Then fire up
+ewd-xpress using
+
+     cd ~/ewd3
+     node ewd-xpress
+
+It will be listening on port 8080, so, to try out ewd-xpress-monitor, use the URL:
+
+     http://192.168.1.230:8080/ewd-xpress-monitor/index.html
+
+     (change the IP address to that assigned to your Raspberry Pi)
+
+When prompted for a password, enter:
+
+     keepThisSecret!
+
+You can change the password by editing the startup file: ~/ewd3/ewd-xpress.js
+
+
+
 ## License
 
  Copyright (c) 2016 M/Gateway Developments Ltd,                           
