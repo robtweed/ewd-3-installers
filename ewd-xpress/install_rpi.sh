@@ -2,17 +2,62 @@
 
 cd ~
 
-apt-get update
+sudo apt-get update
+sudo apt-get install -y build-essential libssl-dev
+sudo apt-get install -y wget gzip curl
 
 # Install NVM
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+command -v nvm
+
 # Use it to install Node v 6.x
+
+echo "NVM installed.  Now installing Node.js version 6.x"
 
 nvm install 6
 
+echo "Node.js installed:"
+node -v
+
+# Now install EWD 3 / ewd-xpress
+
+cd ~
+mkdir ewd3
+cd ~/ewd3
+
+npm install ewd-xpress ewd-xpress-monitor
+
+# now install ewd-redis-globals
+
+npm install tcp-netx
+npm install ewd-redis-globals
+
+# ewd-express
+
+echo 'Moving ewd-express files into place'
+
+mv ~/ewd3/node_modules/ewd-xpress/example/ewd-xpress-rpi.js ~/ewd3/ewd-xpress.js
+
+cd ~/ewd3
+mkdir www
+cd www
+mkdir ewd-xpress-monitor
+cp ~/ewd3/node_modules/ewd-xpress-monitor/www/bundle.js ~/ewd3/www/ewd-xpress-monitor
+cp ~/ewd3/node_modules/ewd-xpress-monitor/www/*.html ~/ewd3/www/ewd-xpress-monitor
+cp ~/ewd3/node_modules/ewd-xpress-monitor/www/*.css ~/ewd3/www/ewd-xpress-monitor
+
+echo "Node.js and EWD 3 installed"
+
 # Next, install Redis
+
+echo "Now installing Redis.."
+
+cd ~
 
 wget http://download.redis.io/redis-stable.tar.gz
 tar xvzf redis-stable.tar.gz
@@ -32,27 +77,6 @@ cd utils
 sudo ./install_server.sh
 
 echo "Redis is now installed and running, listening on port 6379"
-
-# Now install EWD 3 / ewd-xpress
-
-cd ~
-mkdir ewd3
-npm install ewd-xpress ewd-xpress-monitor
-
-# ewd-express
-
-echo 'Moving ewd-express files into place'
-
-mv ~/ewd3/node_modules/ewd-xpress/example/ewd-xpress-rpi.js ~/ewd3/ewd-xpress.js
-mv ~/ewd3/node_modules/ewd-redis-globals/lib/netx/rpi/netx.node ~/ewd3/node_modules/netx.node
-
-cd ~/ewd3
-mkdir www
-cd www
-mkdir ewd-xpress-monitor
-cp ~/ewd3/node_modules/ewd-xpress-monitor/www/bundle.js ~/ewd3/www/ewd-xpress-monitor
-cp ~/ewd3/node_modules/ewd-xpress-monitor/www/*.html ~/ewd3/www/ewd-xpress-monitor
-cp ~/ewd3/node_modules/ewd-xpress-monitor/www/*.css ~/ewd3/www/ewd-xpress-monitor
 
 cd ~/ewd3
 
