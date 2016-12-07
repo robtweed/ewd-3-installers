@@ -69,6 +69,10 @@ When prompted for a password, enter:
 
 You can change the password by editing the startup file: ~/ewd3/ewd-xpress.js
 
+## For More Information on EWD 3 and ewd-xpress
+
+Go to the [M/Gateway Web site](http://www.mgateway.com), click the Training tab and
+go through the free online training course you'll find there.
 
 
 ## License
